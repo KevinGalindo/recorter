@@ -8,6 +8,7 @@ const buscador = document.querySelector('#buscador');
 // Botones
 const btnSeparar = document.querySelector('#btnSeparar');
 const btnBuscar = document.querySelector('#btnBuscar');
+const btnUltimo = document.querySelector('#btnUltimo');
 
 // Contenedores de resultados
 const contenedorArray = document.querySelector('#resulArray');
@@ -87,6 +88,8 @@ const buscarImg = () => {
         return arrayIMG;
     });
 
+    // console.log("Esta aca abjo");
+    // console.log(arrayIMG);
     let elemento;
     
     arrayIMG.filter((data) => {
@@ -99,6 +102,7 @@ const buscarImg = () => {
     
     contenedorImg.appendChild(frament2);
     
+    return arrayIMG;
 
 }
 
@@ -136,6 +140,21 @@ buscador.addEventListener( 'keyup', () =>  {
 
 btnBuscar.addEventListener( 'click' , () => buscarImg() );
 
-// let nombre = ['Kevin', 'Galindo', 'Humberto'];
+btnUltimo.addEventListener('click', () => {
 
-// arrayHTML(nombre);
+    let nuevoArray = buscarImg().reverse();
+
+    const frament2 = document.createDocumentFragment();
+    contenedorImg.innerHTML = '';
+
+    nuevoArray.filter((data) => {
+
+        elemento = imgHTML(data);
+
+        frament2.appendChild(elemento);
+
+    });
+
+    contenedorImg.appendChild(frament2);
+
+});
