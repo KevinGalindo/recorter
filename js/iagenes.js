@@ -114,15 +114,49 @@ const imgHTML = (url) => {
 
     const conImg = document.createElement("DIV");
     const img = document.createElement('IMG');
+    const divSpan = document.createElement('DIV');
+    const btnSpan = document.createElement('SPAN');
+    const urlCop = document.createElement('SPAN');
 
+    // Agregando clases
     conImg.classList.add("img");
     conImg.classList.add("animate__animated");
     conImg.classList.add("animate__fadeIn");
 
+    divSpan.classList.add('cortina');
+    urlCop.classList.add('hidden');
+
+    // Agregando Atributos
     img.setAttribute("src", url);
     img.setAttribute("alt", 'manga');
 
+    urlCop.setAttribute("contenteditable", "true");
+
+    // Agregando contenido
+    btnSpan.textContent = 'Copy!';
+    urlCop.textContent = url;
+
+    divSpan.appendChild(btnSpan);
+    
+    conImg.appendChild(urlCop);
+    conImg.appendChild(divSpan);
     conImg.appendChild(img);
+
+    btnSpan.addEventListener('click', () => {
+
+        urlCop.focus();
+        document.execCommand( 'selectAll' );
+        document.execCommand('copy');
+
+        btnSpan.classList.add('animate__animated', 'animate__heartBeat');
+        btnSpan.textContent = 'Copied';
+
+        setTimeout(() => {
+            btnSpan.classList.remove('animate__animated', 'animate__heartBeat');
+            btnSpan.textContent = 'Copy!';
+        }, 1000);
+
+    });
 
     return conImg;
 
