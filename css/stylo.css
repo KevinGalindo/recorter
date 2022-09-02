@@ -21,6 +21,7 @@
 }
 
 .img{
+    position: relative;
     background: #00acc13b;
     padding: 10px;
     border-radius: 5px;
